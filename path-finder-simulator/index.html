@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="bower_components/vis/dist/vis.js"></script>
+        <script type="text/javascript" src="simulator.js"></script>
+        <link href="bower_components/vis/dist/vis.css" rel="stylesheet" type="text/css" />
+        <link href="./simulator.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="parameters">
+                <div class="field">
+                    <span class="label">Max Cities</span>
+                    <input id="city-count" class="input" value="26"/>
+                </div>
+                <div class="field">
+                    <span class="label">Real Map Lat</span>
+                    <input id="real-map-lat" class="input" type="number" value="-25.3449154"/>
+                </div>
+                <div class="field">
+                    <span class="label">Real Map Lng</span>
+                    <input id="real-map-lng" class="input" type="number" value="-49.1854728"/>
+                </div>
+                <div class="field">
+                    <span class="label">Real Map Radius</span>
+                    <input id="real-map-radius" class="input" type="number" value="300"/>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="simulate" class="button">Simulate Random Map</button>
+                <button id="simulaterealmap" class="button">Simulate Real Map</button>
+            </div>
+        </div>
+        <div id="mynetwork"></div>
+        <script type="text/javascript" src="simulator.js"></script>
+    </body>
+</html>

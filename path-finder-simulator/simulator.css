@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+
+}
+
+.top-bar {
+  width: 800px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.parameters {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border: 1px solid #CCCCCC;
+}
+
+.buttons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.button {
+  margin-left: 10px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 10px;
+}
+
+.label {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+}
+
+.input {
+  height: 18px;
+  width: 100px;
+  padding: 5px;
+  outline: none;
+  border: 1px solid #CCCCCC;
+}
+
+#mynetwork {
+  width: 800px;
+  height: 800px;
+  border: 1px solid lightgray;
+  margin-left: 10px;
+}
