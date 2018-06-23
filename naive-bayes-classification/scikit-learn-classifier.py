@@ -1,9 +1,12 @@
 from sklearn.naive_bayes import BernoulliNB
+from sklearn.naive_bayes import MultinomialNB
 from os import listdir
 from os.path import isfile, join
 
 
 features = ['awful', 'bad', 'boring', 'dull', 'effective', 'enjoyable', 'great', 'hilarious']
+
+use_multinomial = True
 
 
 def files_from_path(path):
@@ -30,7 +33,10 @@ def compute_feature_vectors(path):
         feature_index = 0
         for feature in features:
             count = contents_from_file(path + '/' + file).lower().count(feature)
-            feature_vector[feature_index] = (1 if count > 0 else 0)
+            if use_multinomial:
+                feature_vector[feature_index] = count
+            else:
+                feature_vector[feature_index] = (1 if count > 0 else 0)
             feature_index = feature_index + 1
         # Add feature vector to feature vector list
         feature_vector_list[file_index] = feature_vector
@@ -41,15 +47,11 @@ def compute_feature_vectors(path):
 
 negative_feature_matrix = compute_feature_vectors('/Users/giancarlokc/Repositories/ai-projects/naive-bayes-classification/dataset/review_polarity/txt_sentoken/neg')
 positive_feature_matrix = compute_feature_vectors('/Users/giancarlokc/Repositories/ai-projects/naive-bayes-classification/dataset/review_polarity/txt_sentoken/pos')
-print('Neg: ', len(negative_feature_matrix), 'x', len(negative_feature_matrix[0]))
-print('Pos: ', len(positive_feature_matrix), 'x', len(positive_feature_matrix[0]))
 
 X = negative_feature_matrix + positive_feature_matrix
 Y = []
 Y[0:1000] = [0] * 1000
 Y[1000:2000] = [1] * 1000
-print('X: ', len(X), 'x', len(X[0]))
-print('Y: ', len(Y))
 
 average_correct = 0
 for i in range(10):
@@ -65,9 +67,12 @@ for i in range(10):
     del train_Y[i*100:(i+1)*100]
     del train_Y[1000+(i*100):1000+((i+1)*100)]
 
-    clf = BernoulliNB()
+    clf = MultinomialNB() if use_multinomial else BernoulliNB()
     clf.fit(train_X, train_Y)
-    BernoulliNB(alpha=1.0, binarize=0.0, class_prior=None, fit_prior=True)
+    if use_multinomial:
+        BernoulliNB(alpha=1.0, binarize=0.0, class_prior=None, fit_prior=True)
+    else:
+        MultinomialNB(alpha=1.0, class_prior=None, fit_prior=True)
     prediction = clf.predict(test_X)
 
     # Calculate % of correct negatives
