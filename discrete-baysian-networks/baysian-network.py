@@ -1,8 +1,6 @@
 from pgmpy.models import BayesianModel
 from pgmpy.factors.discrete import TabularCPD
 from pgmpy.inference import VariableElimination
-import numpy as np
-from pgmpy.factors.discrete import JointProbabilityDistribution
 
 model = BayesianModel([('Difficulty', 'Rating'),
                        ('Musicianship', 'Rating'),
@@ -36,8 +34,8 @@ is_valid = model.check_model()
 print('Is valid:', is_valid)
 
 
-    infer = VariableElimination(model)
-    q = infer.query(variables=['Letter'])
+infer = VariableElimination(model)
+q = infer.query(variables=['Letter'])
 
 # q = infer.query(variables=['Letter'], evidence={'Musicianship': 0})
 print(q['Letter'])

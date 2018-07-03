@@ -6,7 +6,7 @@ from os.path import isfile, join
 
 features = ['awful', 'bad', 'boring', 'dull', 'effective', 'enjoyable', 'great', 'hilarious']
 
-use_multinomial = True
+use_multinomial = False
 
 
 def files_from_path(path):
